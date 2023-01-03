@@ -1,4 +1,10 @@
 export const styles = {
+    detail:{
+        overflow:'auto',
+        flex:1,
+        display:'block',
+        maxHeight: '100%'
+    },
     top: {
         margin: '5px',
         boxShadow: '0px 0px 5px #2f2f2f',
