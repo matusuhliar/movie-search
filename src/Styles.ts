@@ -15,7 +15,8 @@ export const styles = {
         background: 'white',
         display: 'flex',
         flexDirection: 'row',
-        flex: 1
+        flex: 1,
+        overflow:'hidden'
     },
     linkSelected: {
         display: 'block',
@@ -62,6 +63,23 @@ export const styles = {
         marginLeft: '2px',
         padding: '10px',
         boxShadow: '0px 0px 5px #2f2f2f',
+        overflow:'hidden',
+        display:'flex',
+        '> div':{
+            display: 'flex',
+            overflow:'hidden',
+            flexDirection:'column',
+            width:'100%'
+        }
+    },
+    pagination:{
+        display: 'flex',
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        gap: '10px',
+        height:'60px',
+        alignItems:'center',
+        justifyContent: 'center'
     },
     paperList: {
         padding: 2,
@@ -81,9 +99,11 @@ export const styles = {
         boxShadow: '0px 0px 5px #2f2f2f'
     },
     items: {
-        flex: 1,
+        flex: '1',
         display: 'flex',
         flexDirection: 'row',
+        alignItems: 'flex-start',
+        alignContent: 'start',
         flexWrap: 'wrap',
         gap: '10px',
         overflow: 'auto'

@@ -21,7 +21,7 @@ export default function Search() {
 
     useEffect(() => {
         dispatch(fetchMoviesAsync({search: search, page: page}))
-    }, [search, page]);
+    }, [search, page, dispatch]);
 
     const handleChangeText = (e: React.ChangeEvent) => {
         setSearch((e.target as HTMLInputElement).value);
@@ -71,7 +71,7 @@ export default function Search() {
                 }
                 {
                     !movies.length ? null :
-                        <Box sx={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap', gap: '10px'}}>
+                        <Box sx={styles.pagination}>
                             <Pagination count={Math.ceil(total / 10)} page={page} onChange={handleChangePage}/>
                         </Box>
                 }

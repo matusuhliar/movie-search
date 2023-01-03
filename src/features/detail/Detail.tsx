@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import {
+    Button, Divider,
     Paper
 } from "@mui/material";
 import {useEffect, useState} from "react";
@@ -50,22 +51,45 @@ export default function Detail(props: any) {
         return (
             <Box sx={styles.right}>
 
-                <Box>
+                <Box sx={{width: '100%'}}>
                     <Typography
                         component="h2"
                         variant="h4"
                         color="inherit"
                         noWrap
-                        sx={{flexGrow: 1, paddingTop: "4px"}}
+                        sx={{paddingTop: "4px", width: '100%'}}
                     >{movie.Title}
-                        <StarBorder color={inStorage ? "primary" : "secondary"}
-                                              onClick={() => addToFavourites({
-                                                  imdbID: movie.imdbID,
-                                                  Title: movie.Title,
-                                                  Year: movie.Year,
-                                                  Poster: movie.Poster
-                                              })}/>
+
+                        <Box sx={{
+                                border: "1px solid silver",
+                                display: 'inline-block',
+                                height: '30px',
+                                float: 'right',
+                                color: 'white',
+                                fontSize:'12px',
+                                borderRadius: '3px',
+                                cursor: 'pointer',
+                                background:inStorage?"#2f2f2f":"gray",
+                                paddingRight:"20px"
+                            }}
+                            onClick={() => addToFavourites({
+                                imdbID: movie.imdbID,
+                                Title: movie.Title,
+                                Year: movie.Year,
+                                Poster: movie.Poster
+                            })}
+                        >
+                            <StarBorder sx={{
+                                position: 'relative',
+                                left: '4px',
+                                top: '4px',
+                                marginRight:'10px',
+                                color: 'yellow'
+                            }}
+                            /> {inStorage?'Remove from':'Add to'} Favorites
+                        </Box>
                     </Typography>
+                    <Divider sx={{my: 1}}/>
                     <Box sx={styles.itemImage(movie.Poster)}/><br/>
                     <Box>{movie['Plot']}</Box><br/>
                     <Box>

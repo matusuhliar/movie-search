@@ -1,4 +1,4 @@
-import {configureStore, ThunkAction, Action,getDefaultMiddleware} from '@reduxjs/toolkit';
+import {configureStore, ThunkAction, Action} from '@reduxjs/toolkit';
 import moviesReducer from "../features/movies/moviesSlice";
 import movieReducer from "../features/movies/movieSlice";
 
