@@ -1,9 +1,7 @@
 export const styles = {
-    detail:{
-        overflow:'auto',
-        flex:1,
-        display:'block',
-        maxHeight: '100%'
+    detail: {
+        overflow: 'auto !important',
+        display: 'block !important'
     },
     top: {
         margin: '5px',
@@ -22,7 +20,7 @@ export const styles = {
         display: 'flex',
         flexDirection: 'row',
         flex: 1,
-        overflow:'hidden'
+        overflow: 'hidden'
     },
     linkSelected: {
         display: 'block',
@@ -69,22 +67,22 @@ export const styles = {
         marginLeft: '2px',
         padding: '10px',
         boxShadow: '0px 0px 5px #2f2f2f',
-        overflow:'hidden',
-        display:'flex',
-        '> div':{
+        overflow: 'hidden',
+        display: 'flex',
+        '> div': {
             display: 'flex',
-            overflow:'hidden',
-            flexDirection:'column',
-            width:'100%'
+            overflow: 'hidden',
+            flexDirection: 'column',
+            width: '100%'
         }
     },
-    pagination:{
+    pagination: {
         display: 'flex',
         flexDirection: 'row',
         flexWrap: 'wrap',
         gap: '10px',
-        height:'60px',
-        alignItems:'center',
+        height: '60px',
+        alignItems: 'center',
         justifyContent: 'center'
     },
     paperList: {
@@ -95,7 +93,7 @@ export const styles = {
         justifyContent: "center"
     },
     item: {
-        cursor:'pointer',
+        cursor: 'pointer',
         height: '260px',
         width: '200px',
         borderRadius: "3px",
@@ -135,5 +133,26 @@ export const styles = {
             borderRadius: '3px 3px 0px 0px',
             border: '3px solid #383838'
         }
+    },
+    favorite: (inStorage: boolean) => {
+        return {
+            border: "1px solid silver",
+            display: 'inline-block',
+            height: '30px',
+            float: 'right',
+            color: 'white',
+            fontSize: '12px',
+            borderRadius: '3px',
+            cursor: 'pointer',
+            background: inStorage ? "#2f2f2f" : "gray",
+            paddingRight: "20px"
+        }
+    },
+    favoriteStar: {
+        position: 'relative',
+        left: '4px',
+        top: '4px',
+        marginRight: '10px',
+        color: 'yellow'
     }
 }

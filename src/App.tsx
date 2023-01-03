@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
 import FavoriteIcon from '@mui/icons-material/Star';
-import {styles} from './Styles';
+import {styles} from './styles';
 import {
     Routes,
     Route, useNavigate, matchPath, useLocation

@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography';
 import {
     Divider, Paper
 } from "@mui/material";
-import {styles} from "../../Styles";
+import {styles} from "../../styles";
 import {LOCAL_STORAGE_KEY} from "../../app/constants";
 import {useNavigate} from "react-router-dom";
 

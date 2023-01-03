@@ -1,6 +1,6 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
-import {fetchMovies} from '../../app/api';
-import {RootState} from "../../app/store";
+import {fetchMovies} from '../app/api';
+import {RootState} from "../app/store";
 
 export interface Movie {
     Title: string,
@@ -31,8 +31,7 @@ export const fetchMoviesAsync = createAsyncThunk(
     'movies/fetchMovies',
     async (data: SearchRequest) => {
         const {search, page} = data;
-        const response = await fetchMovies(search, page);
-        return response;
+        return await fetchMovies(search, page);
     }
 );
 
@@ -56,9 +55,6 @@ export const moviesSlice = createSlice({
     },
 });
 
-export const {} = moviesSlice.actions;
-
 export const selectMovies = (state: RootState) => state.movies.movies;
 export const selectMoviesTotalCount = (state: RootState) => state.movies.total;
-
 export default moviesSlice.reducer;
