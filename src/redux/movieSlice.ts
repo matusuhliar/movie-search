@@ -67,4 +67,5 @@ export const movieSlice = createSlice({
 
 
 export const selectMovie = (state: RootState) => state.movie.movie;
+export const selectMovieLoadStatus = (state: RootState) => state.movie.status;
 export default movieSlice.reducer;

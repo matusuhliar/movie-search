@@ -8,7 +8,7 @@ export const styles = {
         boxShadow: '0px 0px 5px #2f2f2f',
         background: '#383838',
         display: 'flex',
-        flexDirection: 'row',
+        flexDirection: 'column',
         borderRadius: '3px',
         '> *': {
             color: 'white'
@@ -23,11 +23,11 @@ export const styles = {
         overflow: 'hidden'
     },
     linkSelected: {
-        display: 'block',
+        display: 'flex',
+        flexDirection: 'column',
         textDecoration: 'none',
         color: 'white',
-        textAlign: 'left',
-        borderBottom: '1px solid gray',
+        alignItems: 'center',
         fontSize: '14px',
         padding: '10px 20px 15px',
         cursor: 'pointer',
@@ -35,36 +35,25 @@ export const styles = {
         background: '#2f2f2f'
     },
     link: {
-        display: 'block',
+        display: 'flex',
+        flexDirection: 'column',
         textDecoration: 'none',
         color: 'white',
-        textAlign: 'left',
-        borderBottom: '1px solid gray',
+        alignItems: 'center',
         fontSize: '14px',
         padding: '10px 20px 15px',
         cursor: 'pointer',
         fontFamily: '"Roboto","Helvetica","Arial",sans-serif',
-        '> svg': {
-            position: 'relative',
-            top: '5px'
-        },
         ':hover': {
             background: '#2f2f2f'
         }
     },
-    left: {
-        margin: '5px',
-        borderRadius: '3px',
-        boxShadow: '0px 0px 5px #2f2f2f',
-        width: 220,
-        background: '#383838',
-    },
+
     right: {
         background: "white",
         borderRadius: '3px',
         flex: 1,
         margin: '5px',
-        marginLeft: '2px',
         padding: '10px',
         boxShadow: '0px 0px 5px #2f2f2f',
         overflow: 'hidden',

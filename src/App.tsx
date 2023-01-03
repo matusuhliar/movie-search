@@ -35,16 +35,14 @@ export default function App() {
             <Box sx={styles.top}>
                 <Toolbar>
                     <Typography component="h1" variant="h5" color="inherit" noWrap sx={{flexGrow: 1, paddingTop: "4px"}}>
-                        Movies - Sample Movie Database
+                        Movies
                     </Typography>
+                    <Link sx={isSearch?styles.linkSelected:styles.link} onClick={()=>navigate('/')}><SearchIcon/> Search</Link>
+                    <Link sx={isFavourites?styles.linkSelected:styles.link} onClick={()=>navigate('/favourites')}><FavoriteIcon/> Favourite</Link>
                 </Toolbar>
             </Box>
             <Box sx={styles.main}>
-                <Box sx={styles.left}>
-                    <Link sx={isSearch?styles.linkSelected:styles.link} onClick={()=>navigate('/')}><SearchIcon/> Search</Link>
-                    <Link sx={isFavourites?styles.linkSelected:styles.link} onClick={()=>navigate('/favourites')}><FavoriteIcon/> Favourite</Link>
-                </Box>
-                <Routes>
+                 <Routes>
                     <Route path="/" element={<Search/>}/>
                     <Route path="/detail/:id" element={<Detail />}/>
                     <Route path="/favourites" element={<Favourites />}/>

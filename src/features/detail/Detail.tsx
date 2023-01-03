@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import {Divider} from "@mui/material";
 import {useEffect, useState} from "react";
 import {useAppDispatch, useAppSelector} from "../../app/hooks";
-import {fetchMovieAsync, selectMovie} from "../../redux/movieSlice";
+import {fetchMovieAsync, selectMovie, selectMovieLoadStatus} from "../../redux/movieSlice";
 import {LOCAL_STORAGE_KEY} from "../../app/constants";
 import {StarBorder} from "@mui/icons-material";
 import {useParams} from "react-router-dom";
@@ -14,6 +14,7 @@ export default function Detail() {
     const {id} = useParams();
     const dispatch = useAppDispatch();
     const movie = useAppSelector(selectMovie);
+    const status = useAppSelector(selectMovieLoadStatus);
     useEffect(() => {
         dispatch(fetchMovieAsync(id || ""))
     }, [id, dispatch]);
@@ -43,7 +44,7 @@ export default function Detail() {
         setInStorage(inLocalStorage(obj.imdbID));
     }
 
-    if (movie) {
+    if (movie && status==='idle') {
         return (
             <Box sx={styles.right}>
                 <Box sx={styles.detail}>
