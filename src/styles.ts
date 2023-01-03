@@ -57,7 +57,7 @@ export const styles = {
         borderRadius: '3px',
         boxShadow: '0px 0px 5px #2f2f2f',
         width: 220,
-        background: '#9a9a9a',
+        background: '#383838',
     },
     right: {
         background: "white",
