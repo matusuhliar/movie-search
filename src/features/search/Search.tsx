@@ -8,7 +8,7 @@ import {useEffect, useState} from "react";
 import {styles} from "../../Styles";
 import {useAppDispatch, useAppSelector} from "../../app/hooks";
 import {fetchMoviesAsync, selectMovies, selectMoviesTotalCount} from "../movies/moviesSlice";
-import {useNavigate, useLocation} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 export default function Search() {
     const [search, setSearch] = useState("rambo");

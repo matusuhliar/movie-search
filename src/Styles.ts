@@ -17,7 +17,18 @@ export const styles = {
         flexDirection: 'row',
         flex: 1
     },
-
+    linkSelected: {
+        display: 'block',
+        textDecoration: 'none',
+        color: 'white',
+        textAlign: 'left',
+        borderBottom: '1px solid gray',
+        fontSize: '14px',
+        padding: '10px 20px 15px',
+        cursor: 'pointer',
+        fontFamily: '"Roboto","Helvetica","Arial",sans-serif',
+        background: '#2f2f2f'
+    },
     link: {
         display: 'block',
         textDecoration: 'none',
@@ -60,6 +71,7 @@ export const styles = {
         justifyContent: "center"
     },
     item: {
+        cursor:'pointer',
         height: '260px',
         width: '200px',
         borderRadius: "3px",

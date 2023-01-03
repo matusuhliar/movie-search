@@ -11,6 +11,7 @@ import {LOCAL_STORAGE_KEY} from "../../app/constants";
 import {StarBorder} from "@mui/icons-material";
 import {useParams} from "react-router-dom";
 import {styles} from "../../Styles";
+import Typography from "@mui/material/Typography";
 
 export default function Detail(props: any) {
     const {id} = useParams();
@@ -45,19 +46,26 @@ export default function Detail(props: any) {
         setInStorage(inLocalStorage(obj.imdbID));
     }
 
-
     if (movie) {
         return (
             <Box sx={styles.right}>
 
                 <Box>
-                    <h2 style={{paddingTop:'0px'}}>{movie.Title} <StarBorder color={inStorage ? "primary" : "secondary"}
-                                                  onClick={() => addToFavourites({
-                                                      imdbID: movie.imdbID,
-                                                      Title: movie.Title,
-                                                      Year: movie.Year,
-                                                      Poster: movie.Poster
-                                                  })}/></h2>
+                    <Typography
+                        component="h2"
+                        variant="h4"
+                        color="inherit"
+                        noWrap
+                        sx={{flexGrow: 1, paddingTop: "4px"}}
+                    >{movie.Title}
+                        <StarBorder color={inStorage ? "primary" : "secondary"}
+                                              onClick={() => addToFavourites({
+                                                  imdbID: movie.imdbID,
+                                                  Title: movie.Title,
+                                                  Year: movie.Year,
+                                                  Poster: movie.Poster
+                                              })}/>
+                    </Typography>
                     <Box sx={styles.itemImage(movie.Poster)}/><br/>
                     <Box>{movie['Plot']}</Box><br/>
                     <Box>
