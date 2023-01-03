@@ -11,9 +11,11 @@ import FavoriteIcon from '@mui/icons-material/Star';
 import {styles} from './Styles';
 import {
     Routes,
-    Route
+    Route, useNavigate
 } from "react-router-dom";
 import Search from "./features/search/Search";
+import Detail from "./features/detail/Detail";
+import Favourites from "./features/favourites/Favourites";
 
 const theme = createTheme({
     typography: {
@@ -22,6 +24,7 @@ const theme = createTheme({
 });
 
 export default function App() {
+    const navigate = useNavigate();
     return (
         <ThemeProvider theme={theme}>
             <Box sx={styles.top}>
@@ -39,11 +42,13 @@ export default function App() {
             </Box>
             <Box sx={styles.main}>
                 <Box sx={styles.left}>
-                    <Link sx={styles.link}><SearchIcon/> Search</Link>
-                    <Link sx={styles.link}><FavoriteIcon/> Favourite</Link>
+                    <Link sx={styles.link} onClick={()=>navigate('/')}><SearchIcon/> Search</Link>
+                    <Link sx={styles.link} onClick={()=>navigate('/favourites')}><FavoriteIcon/> Favourite</Link>
                 </Box>
                 <Routes>
                     <Route path="/" element={<Search/>}/>
+                    <Route path="/detail/:id" element={<Detail />}/>
+                    <Route path="/favourites" element={<Favourites />}/>
                 </Routes>
             </Box>
         </ThemeProvider>

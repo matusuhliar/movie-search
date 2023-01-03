@@ -1,5 +1,5 @@
 import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {fetchMovies} from './api';
+import {fetchMovies} from '../../app/api';
 import {RootState} from "../../app/store";
 
 export interface Movie {
@@ -28,7 +28,7 @@ const initialState: MoviesState = {
 };
 
 export const fetchMoviesAsync = createAsyncThunk(
-    'counter/fetchMovies',
+    'movies/fetchMovies',
     async (data: SearchRequest) => {
         const {search, page} = data;
         const response = await fetchMovies(search, page);

@@ -8,12 +8,15 @@ import {useEffect, useState} from "react";
 import {styles} from "../../Styles";
 import {useAppDispatch, useAppSelector} from "../../app/hooks";
 import {fetchMoviesAsync, selectMovies, selectMoviesTotalCount} from "../movies/moviesSlice";
+import {useNavigate, useLocation} from "react-router-dom";
 
 export default function Search() {
     const [search, setSearch] = useState("rambo");
     const [page, setPage] = useState(1);
     const movies = useAppSelector(selectMovies);
     const total = useAppSelector(selectMoviesTotalCount);
+    const navigate = useNavigate();
+
     const dispatch = useAppDispatch();
 
     useEffect(() => {
@@ -30,6 +33,10 @@ export default function Search() {
     ) => {
         setPage(value);
     };
+
+    const openDetail = (id:string) =>{
+        navigate('/detail/'+id)
+    }
 
     return (
         <Box sx={styles.right}>
@@ -54,7 +61,7 @@ export default function Search() {
                         <Box sx={styles.items}>
                             {
                                 movies.map((movie) => (
-                                    <Box key={movie.imdbID} sx={styles.item}>
+                                    <Box key={movie.imdbID} sx={styles.item} onClick={()=>openDetail(movie.imdbID)}>
                                         <Box sx={styles.itemImage(movie.Poster)}/>
                                         <Typography sx={styles.itemLabel}>{movie.Title}</Typography>
                                     </Box>

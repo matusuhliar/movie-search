@@ -1,5 +1,5 @@
 import queryString from "query-string";
-import {API_KEY} from "./../../app/constants";
+import {API_KEY} from "./constants";
 import axios from "axios";
 
 export function fetchMovies(search: string, page: number) {
