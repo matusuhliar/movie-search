@@ -1,17 +1,20 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import {Divider} from "@mui/material";
+import {Button, Divider} from "@mui/material";
 import {useEffect, useState} from "react";
 import {useAppDispatch, useAppSelector} from "../../app/hooks";
 import {fetchMovieAsync, selectMovie, selectMovieLoadStatus} from "../../redux/movieSlice";
 import {LOCAL_STORAGE_KEY} from "../../app/constants";
-import {StarBorder} from "@mui/icons-material";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {styles} from "../../styles";
 import Typography from "@mui/material/Typography";
+import {
+    ArrowBack, Star
+} from "@mui/icons-material";
 
 export default function Detail() {
     const {id} = useParams();
+    const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const movie = useAppSelector(selectMovie);
     const status = useAppSelector(selectMovieLoadStatus);
@@ -53,13 +56,18 @@ export default function Detail() {
                         variant="h4"
                         color="inherit"
                         noWrap
-                        sx={{paddingTop: "4px", width: '100%'}}
+                        sx={{paddingTop: "4px", width: '100%', display:'flex'}}
                     >
-                        <span>{movie.Title}</span>
-                        <Box sx={styles.favorite(inStorage)} onClick={() => addToFavourites(movie)}>
-                            <StarBorder sx={styles.favoriteStar}/> {inStorage ? 'Remove from' : 'Add to'} Favorites
-                        </Box>
+                        <Box>{movie['Title']}</Box>
+
                     </Typography>
+                    <Divider sx={{my: 1}}/>
+                    <Button variant="text" startIcon={<ArrowBack />} onClick={()=>navigate(-1)}>
+                        Back
+                    </Button>
+                    <Button color={!inStorage?"primary":"secondary"} variant="text" startIcon={<Star />} onClick={()=>addToFavourites(movie)}>
+                        {inStorage?"Remove From Favorite":"Add To Favorite"}
+                    </Button>
                     <Divider sx={{my: 1}}/>
                     <Box sx={styles.itemImage(movie.Poster)}/><br/>
                     <Box>{movie['Plot']}</Box><br/>

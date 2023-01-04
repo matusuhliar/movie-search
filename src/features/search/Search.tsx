@@ -4,15 +4,17 @@ import Typography from '@mui/material/Typography';
 import {
     Divider, Pagination, Paper, TextField
 } from "@mui/material";
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import {styles} from "../../styles";
 import {useAppDispatch, useAppSelector} from "../../app/hooks";
 import {fetchMoviesAsync, selectMovies, selectMoviesTotalCount} from "../../redux/moviesSlice";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useSearchParams} from "react-router-dom";
+import queryString from "query-string";
 
 export default function Search() {
-    const [search, setSearch] = useState("rambo");
-    const [page, setPage] = useState(1);
+    const [searchParams] = useSearchParams();
+    const search = searchParams.get("s") || ""
+    const page = Number(searchParams.get("p")) || 1
     const movies = useAppSelector(selectMovies);
     const total = useAppSelector(selectMoviesTotalCount);
     const navigate = useNavigate();
@@ -24,14 +26,14 @@ export default function Search() {
     }, [search, page, dispatch]);
 
     const handleChangeText = (e: React.ChangeEvent) => {
-        setSearch((e.target as HTMLInputElement).value);
-        setPage(1);
+        const value = (e.target as HTMLInputElement).value
+        navigate('/?' + queryString.stringify({s:value,p:1}))
     };
 
     const handleChangePage = (
         event: React.ChangeEvent<unknown>, value: number
     ) => {
-        setPage(value);
+        navigate('/?' + queryString.stringify({s:search,p:value}))
     };
 
     const openDetail = (id: string) => {
