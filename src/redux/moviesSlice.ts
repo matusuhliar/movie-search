@@ -38,7 +38,12 @@ export const fetchMoviesAsync = createAsyncThunk(
 export const moviesSlice = createSlice({
     name: 'movies',
     initialState,
-    reducers: {},
+    reducers: {
+        clean(state) {
+            state.movies = [];
+            state.status = 'idle';
+        }
+    },
     extraReducers: (builder) => {
         builder
             .addCase(fetchMoviesAsync.pending, (state) => {
@@ -55,6 +60,8 @@ export const moviesSlice = createSlice({
     },
 });
 
+export const { clean } = moviesSlice.actions
 export const selectMovies = (state: RootState) => state.movies.movies;
 export const selectMoviesTotalCount = (state: RootState) => state.movies.total;
+export const selectMoviesStatus = (state: RootState) => state.movies.status;
 export default moviesSlice.reducer;

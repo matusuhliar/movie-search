@@ -2,12 +2,19 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import {
+    CircularProgress,
     Divider, Pagination, Paper, TextField
 } from "@mui/material";
 import {useEffect} from "react";
 import {styles} from "../../styles";
 import {useAppDispatch, useAppSelector} from "../../app/hooks";
-import {fetchMoviesAsync, selectMovies, selectMoviesTotalCount} from "../../redux/moviesSlice";
+import {
+    clean,
+    fetchMoviesAsync,
+    selectMovies,
+    selectMoviesStatus,
+    selectMoviesTotalCount
+} from "../../redux/moviesSlice";
 import {useNavigate, useSearchParams} from "react-router-dom";
 import queryString from "query-string";
 
@@ -17,11 +24,13 @@ export default function Search() {
     const page = Number(searchParams.get("p")) || 1
     const movies = useAppSelector(selectMovies);
     const total = useAppSelector(selectMoviesTotalCount);
+    const status = useAppSelector(selectMoviesStatus);
     const navigate = useNavigate();
 
     const dispatch = useAppDispatch();
 
     useEffect(() => {
+        dispatch(clean())
         dispatch(fetchMoviesAsync({search: search, page: page}))
     }, [search, page, dispatch]);
 
@@ -52,7 +61,15 @@ export default function Search() {
                     <Divider sx={{my: 1}}/>
                 </Box>
                 {
-                    !movies.length ? null :
+                    movies.length ? null :
+                        <Box sx={{flex:1, padding: "10px", color:"#2f2f2f"}}>
+                            <Typography component="div" color="inherit" noWrap>
+                                {(status==='idle'?<span>No movie found for search phrase "{search}" ...</span>:<CircularProgress />)}
+                            </Typography>
+                        </Box>
+                }
+                {
+                    !movies.length || status!=='idle' ? null :
                         <Box sx={styles.items}>
                             {
                                 movies.map((movie) => (
@@ -65,7 +82,7 @@ export default function Search() {
                         </Box>
                 }
                 {
-                    !movies.length ? null :
+                    !movies.length || status!=='idle' ? null :
                         <Box sx={styles.pagination}>
                             <Pagination count={Math.ceil(total / 10)} page={page} onChange={handleChangePage}/>
                         </Box>
